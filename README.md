@@ -23,7 +23,7 @@ Input file: parameters.dat
 - Contains all parameter values to be used in the main program, as well as file names.
 
 
-Input file: dispatch/dispatch.dat
+Input file: dispatch/dispatch_dd-mm-yyyy.dat
 
 - dispatch_07-02-2018.dat and dispatch_08-02-2018.dat given as examples. These files can be used to reproduce Figure 3 from the paper.
 - Dispatch files were created using 10-minute power data from Red Eléctrica de España (https://demanda.ree.es/visiona/home) for Gran Canaria.
@@ -35,7 +35,7 @@ Input file: dispatch/dispatch.dat
     - The power provided by renewables (assets) in MW, which is assumed to be 0 if it is not in the file.
 
 
-Output file: results/frequency.dat
+Output file: results/frequency_dd-mm-yyyy.dat
 
 - frequency_07-02-2018.dat and frequency_08-02-2018.dat given as examples. These files can be used to reproduce Figure 3 from the paper.
 - Frequency files contain the frequency values from simulations written every 1 second. Timestamp is not given explicitly, but it can be easily deduced.

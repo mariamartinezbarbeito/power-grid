@@ -27,7 +27,7 @@ Input file: dispatch/dispatch_dd-mm-yyyy.dat
 
 - dispatch_07-02-2018.dat and dispatch_08-02-2018.dat given as examples. These files can be used to reproduce Figure 3 from the paper.
 - Dispatch files were created using 10-minute power data from Red Eléctrica de España (https://demanda.ree.es/visiona/home) for Gran Canaria.
-- Each file contains 156 dispatches. There is 1 dispatch/10 minutes. Dispatch 1 is equivalent to 23:00 (11pm) from the previous day, and dispatch 156 is equivalent to 01:00 (1am) from the next day (UTC time).
+- Each file contains 156 dispatches. There is 1 dispatch/10 minutes. Dispatch 1 is equivalent to 23:00 (11 pm) from the previous day, and dispatch 156 is equivalent to 01:00 (1 am) from the next day (UTC time).
 - Each dispatch contains:
     - The load per node in MW.
     - The operation set point (Pref) of each generating group in MW.

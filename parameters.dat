@@ -1,0 +1,110 @@
+&Network
+N=29 ! Number of nodes
+Nplants=6 ! Number of power plants
+L=39 ! Number of transmission lines
+Nassets=6 ! Number of assets
+/
+&IntegrationParameters
+dt=1.0 ! Integration step
+t0=0.0 ! Initial time in seconds
+Ndspch=155 ! Number of dispatches over which integration takes place (155=93000s)
+nstep=600 ! integration time steps between two dispatches
+writeStep=1 ! time step between writing data
+/
+&ModelParameters
+wR=50.0 ! reference frequency of the grid in Hz (2pi*wR in the main program)
+D=1.0 ! fraction of the load that is frequency dependent
+tau_ou=60.0 ! OU noise time scale (s)
+epsilon=0.15 ! OU noise amplitude
+defaultHPG=1.d-4 ! default value for H*PG for consumer nodes
+/
+&fileName
+initFile='autoinit' !file with initial condition. Use 'autoinit' for authomatic initialization to first dispatch.
+dispFile='dispatch/dispatch_07-02-2018.dat' ! dispatch file
+resFile='frequency_07-02-2018.dat' ! results file
+/
+! Node specific parameters for plants
+! Col  1: Plant number
+! Col  2: Node number
+! Col  3: H: inertia constant when power plant is online (1/s)
+! Col  4: PG: nominal power of each power plant
+! Col  5: PGc: available power used for primary control
+! Col  6: tau: dPm/dt  time-scale  (s)
+! Col  7: 1/R: inverse of governor speed regulator parameter (1/s)
+! Col  8: kappa: secondary control parameter (MW/s)
+!
+! Plant  Node   H      PG      PGc    tau   1/R   kappa
+!
+0 ! Integer allowing to start reading data on next line
+1  24   4.5     433.1    45.0     0.5     20.0     7.0
+2  25   3.0     148.4    15.0     0.5     20.0     1.5
+3  26   5.5      64.6    12.0     0.5     20.0     1.2
+4  27   3.0     111.2    10.0     0.5     20.0     1.0
+5  28   5.5      82.2    16.0     0.5     20.0     1.6
+6  29   2.0      41.0     4.0     0.5     20.0     0.4
+
+! Line parameters
+! Col  1: Line number i
+! Col  2: node ni
+! Col  3: node nj
+! Col  4: B: V^2/Z of the line
+!
+! iL  ni  nj   B_ij
+!
+0 ! Integer allowing to start reading data on next line
+1 1 2 6050.00
+2 1 3 5445.00
+3 1 4 3111.43
+4 1 5 726.00
+5 1 6 544.50
+6 1 8 10083.33
+7 2 13 1361.25
+8 2 14 3630.00
+9 2 15 6501.49
+10 2 16 1555.71
+11 2 18 1089.00
+12 2 20 907.50
+13 2 21 1980.00
+14 3 6 605.00
+15 4 11 1089.00
+16 4 12 544.50
+17 5 6 3630.00
+18 6 7 1555.71
+19 6 8 1089.00
+20 7 8 1210.00
+21 7 9 2178.00
+22 8 9 5445.00
+23 9 10 3630.00
+24 11 13 1089.00
+25 12 14 907.50
+26 15 17 10890.00
+27 15 22 495.00
+28 16 23 640.59
+29 18 19 2178.00
+30 18 21 5445.00
+31 19 20 2722.50
+32 20 21 5445.00
+33 22 23 1089.00
+34 1 24 20000.00
+35 1 25 20000.00
+36 1 26 20000.00
+37 2 27 20000.00
+38 2 28 20000.00
+39 2 29 20000.00
+
+ assets:  id   node   kind
+          1    7      sun
+          2    11     sun
+          3    13     sun
+          4    3      wind
+          5    11     wind
+          6    23     wind
+! Parameters for PARDISO. The main program has default values.
+! Each line starts with 2 integers:
+! 1st integer is the number of the parameter (1, ..., 64)
+! 2nd integer is the parameter value
+! Lines not starting with 2 integers are ignored when reading.
+
+  3   1    ! number of cores
+  4   81   ! zero means not using iterative algorithm (LU at each step). Format n1 where n means precision of 10^-n.
+  8   2    ! maximum number of refinements in the last step when solving LU x=y. Can be zero.

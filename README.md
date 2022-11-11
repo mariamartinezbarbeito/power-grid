@@ -18,8 +18,6 @@ Program written by María Martínez-Barbeito and Pere Colet.
 
 
 
-
-
 Input file: parameters.dat 
 
 - Contains all parameter values to be used in the main program, as well as file names.
@@ -35,6 +33,10 @@ Input file: dispatch/dispatch.dat
     - The operation set point (Pref) of each generating group in MW.
     - The timescale of Pref (lambda) for each plant in minutes.
     - The power provided by renewables (assets) in MW, which is assumed to be 0 if it is not in the file.
-- 
 
+
+Output file: results/frequency.dat
+
+- frequency_07-02-2018.dat and frequency_08-02-2018.dat given as examples. These files can be used to reproduce Figure 3 from the paper.
+- Frequency files contain the frequency values from simulations written every 1 second.
 

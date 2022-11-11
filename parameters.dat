@@ -21,7 +21,7 @@ defaultHPG=1.d-4 ! default value for H*PG for consumer nodes
 &fileName
 initFile='autoinit' !file with initial condition. Use 'autoinit' for authomatic initialization to first dispatch.
 dispFile='dispatch/dispatch_07-02-2018.dat' ! dispatch file
-resFile='frequency_07-02-2018.dat' ! results file
+resFile='results/frequency_07-02-2018.dat' ! results file
 /
 ! Node specific parameters for plants
 ! Col  1: Plant number

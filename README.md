@@ -38,5 +38,5 @@ Input file: dispatch/dispatch.dat
 Output file: results/frequency.dat
 
 - frequency_07-02-2018.dat and frequency_08-02-2018.dat given as examples. These files can be used to reproduce Figure 3 from the paper.
-- Frequency files contain the frequency values from simulations written every 1 second.
+- Frequency files contain the frequency values from simulations written every 1 second. Timestamp is not given explicitly, but it can be easily deduced.
 

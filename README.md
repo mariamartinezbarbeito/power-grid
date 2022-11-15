@@ -14,7 +14,7 @@ Main program: grid_implicit_sparse.f90
 Program written by María Martínez-Barbeito and Pere Colet.
 - Integrates power grid dynamics using a first order semi-implicit Euler method: x(t+dt)=x(t)+dt*F(x(t+dt)) approximated as x(t+dt)=x(t)+dx with dx solution of the linear set of equations (I-dt*J)*dx=F(x)*dt where J is the Jacobian.
 - Takes advantage of the sparse structure of the grid (<2% non-zero terms in I-dtJ). The program uses PARDISO routines included in Intel Math Kernel Libraries (MKL) to solve the sparse linear set of equations. There is also an open source version as part of the PARDISO project: https://www.pardiso-project.org/
-- Uses random number generator dranxor.f90 (also included in this repository): Raúl Toral, & Amitabha Chakrabarti (1993). Generation of Gaussian distributed random numbers by using a numerical inversion method. Computer physics communications, 74(3), 327-334.
+- Uses random number generator
 
 
 

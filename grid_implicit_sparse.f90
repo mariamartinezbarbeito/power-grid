@@ -11,9 +11,6 @@
 ! solve the sparse linear set of equations. There is also an open source version as
 ! part of the PARDISO project: https://www.pardiso-project.org/
 !
-! Uses random number generator dranxor.f90: Toral, R., & Chakrabarti, A. (1993).
-! Generation of Gaussian distributed random numbers by using a numerical inversion
-! method. Computer physics communications, 74(3), 327-334.
 !
 !-------------------------------------------------------------------------------
 !
@@ -435,10 +432,10 @@ subroutine initialization
   P_assets=P_assets0
 !
 ! Initialize Orstein-Uhlenbeck noise
-  call dran_ini(int(time())) !call dran_ini(int(12345)) ! subroutine initialization
+!  call !dran_ini(int(time())) !call dran_ini(int(12345)) ! subroutine initialization
   p_ou=exp(-dt/tau_ou)
   coeff_ou=sqrt((1.0d0-p_ou**2)*0.5d0/tau_ou)
-  call dran_gv(Gaussian,N)
+!  call !dran_gv(Gaussian,N)
   xi_ou=Gaussian/sqrt(2.d0*tau_ou)
 
  return

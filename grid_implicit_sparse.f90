@@ -448,10 +448,10 @@ subroutine rand_gaussian
   double precision, dimension(2*int((N+1)/2)) :: U
 
   call random_number(U) ! array of uniform random numbers of mean 0 and variance 1
-  
+
   N2=int((N+1)/2)
-  
-  ! Box-Muller algorithm to get gaussian random number
+
+  ! Box-Muller algorithm to generate Gaussian random numbers:
   U(:N2)=sqrt(-2.d0*log(1.d0-U(:N2)))
   Gaussian(:N2)=U(:N2)*cos(twoPi*U(N2+1:2*N2))
   Gaussian(N2+1:N)=U(:N-N2)*sin(twoPi*U(N2+1:N))

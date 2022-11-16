@@ -40,7 +40,7 @@ integer :: N,Nplants,L,Nt,Nassets ! number of: nodes, power plants, transmission
 integer :: Ndspch,nstep,slowOps ! number of: dispatches, time steps within a dispatch, slow switchOffs
 integer :: i,j,k,idspch,istep   ! counters
 !
-double precision :: pi ! pi number (=3.14)
+double precision :: twoPi ! 2*pi number (=2*3.14)
 double precision :: t0,t,dt,twrite,writeStep !initial time, time, integration step, time of last writing, writing step
 double precision :: wR,D,DwR    ! reference frequecy, freq. dependend load, D/wR.
 double precision :: start,finish     !cpu time counters
@@ -91,7 +91,7 @@ double precision ::  ddum(1)
 !
 call cpu_time(start)
 !
-pi=4.d0*datan(1.d0)
+twoPi=8.d0*datan(1.d0)
 !
 !-------------------------------------------------------------------------------
 !
@@ -340,7 +340,7 @@ subroutine read_and_allocate
     if (wR.le.0.d0) then
       print *, 'wR not positive. wR =', wR; STOP
     endif
-    wR=2*pi*wR ! wR is in Hz in the parameters file
+    wR=twoPi*wR ! wR is in Hz in the parameters file
     DwR=D/wR
     wR22HPG=wR*wR/(2.d0*defaultHPG) !default inertia coeff for consumer nodes.
 
@@ -444,15 +444,17 @@ end subroutine initialization
 !--------------------------- Gaussian random number ----------------------------
 subroutine rand_gaussian
   implicit none
-  integer :: i
-  double precision, dimension(2*int((N+1)/2)) :: U1,U2
+  integer :: N2
+  double precision, dimension(2*int((N+1)/2)) :: U
 
-  call random_number(U1) ! array of uniform random numbers of mean 0 and variance 1
-  call random_number(U2) ! array of uniform random numbers of mean 0 and variance 1
-
-  do i=1,N ! Box-Muller algorithm to get gaussian random number
-    Gaussian(i) = sqrt(-2.d0*log(U1(i)))*cos(2.d0*pi*U2(i))
-  enddo
+  call random_number(U) ! array of uniform random numbers of mean 0 and variance 1
+  
+  N2=int((N+1)/2)
+  
+  ! Box-Muller algorithm to get gaussian random number
+  U(:N2)=sqrt(-2.d0*log(1.d0-U(:N2)))
+  Gaussian(:N2)=U(:N2)*cos(twoPi*U(N2+1:2*N2))
+  Gaussian(N2+1:N)=U(:N-N2)*sin(twoPi*U(N2+1:N))
 
   return
 end subroutine rand_gaussian
@@ -650,7 +652,7 @@ subroutine write_data
   implicit none
 
   open(20,file=resFile,action='write')
-  write(20,'(F10.5)') x(N+1)/(2*pi)
+  write(20,'(F10.5)') x(N+1)/twoPi
   twrite=t
 
   return
